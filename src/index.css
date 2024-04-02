@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+.Source {
+  font-family: "Source Sans 3", sans-serif;
+}
+
+.text-color {
+  color: #F7A582;
+}
+
+.bg-color {
+  background-color: #07332F;
+}
+
+.bg-btn {
+  background-color: #F7A582;
+  border: none;
+}
+
+.card-text {
+  color: #6C6B6B;
+}
