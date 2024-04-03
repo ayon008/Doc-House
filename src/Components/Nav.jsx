@@ -1,14 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/Group 1.svg';
+import useAuth from './Hooks/useAuth';
 
 const Nav = () => {
+
+    const { user, logOut } = useAuth()
+
+    const signOut = () => {
+        logOut()
+            .then()
+            .catch(error => console.log(error))
+    }
+
     const navItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/'>About</Link></li>
         <li><Link to='/'>Appointment</Link></li>
-        <li><Link to='/login'>Login</Link></li>
+        {
+            user ?
+                <>
+                    <li className='lg:text-white'><Link>{user?.displayName}</Link></li>
+                    <li><Link className='btn btn-outline lg:text-white' onClick={signOut}>Log Out</Link></li>
+                </> :
+                <>
+                    <li><Link to='/login'>Login</Link></li>
+                </>
+        }
     </>
+
+
+
     return (
         <div className="navbar h-[80px] p-0">
             <div className="navbar-start">
