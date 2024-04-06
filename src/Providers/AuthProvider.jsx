@@ -15,7 +15,6 @@ const AuthProvider = ({ children }) => {
     // Loading
     const [loading, setLoading] = useState(true);
 
-
     const googleLogin = () => {
         return signInWithPopup(auth, provider)
     }
@@ -45,7 +44,7 @@ const AuthProvider = ({ children }) => {
 
     const authenticateUser = (email, password) => {
         const credential = EmailAuthProvider.credential(email, password)
-        return reauthenticateWithCredential(user, credential)
+        return reauthenticateWithCredential(auth.currentUser, credential)
     }
 
     useEffect(() => {

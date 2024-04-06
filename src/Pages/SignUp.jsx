@@ -15,7 +15,7 @@ import { generateRandomCharacters } from '../Components/Utilities/userName';
 const SignUp = () => {
 
     // auth
-    const { signUp, updateUser, logOut, googleLogin, removeUser, user, loading } = useAuth();
+    const { signUp, updateUser, logOut, googleLogin, removeUser, authenticateUser } = useAuth();
 
     const [loader, setLoader] = useState(false);
 
@@ -68,9 +68,11 @@ const SignUp = () => {
                                 console.log(data.data.message);
                                 if (data.data.message === 'username not available') {
                                     return (
-                                        removeUser()
-                                            .then(() => {
-                                                setErrorMessage(true)
+                                        authenticateUser(email, password)
+                                            .then(result => {
+                                                removeUser()
+                                                    .then(result => console.log(result))
+                                                    .catch(error => console.log(error))
                                             })
                                             .catch(error => console.log(error))
                                     )
