@@ -23,3 +23,9 @@
 .card-text {
   color: #6C6B6B;
 }
+
+
+.swiper-button-next,
+.swiper-button-prev {
+  all: unset !important;
+}

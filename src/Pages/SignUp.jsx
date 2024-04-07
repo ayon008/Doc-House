@@ -67,6 +67,7 @@ const SignUp = () => {
                             .then(data => {
                                 console.log(data.data.message);
                                 if (data.data.message === 'username not available') {
+                                    setErrorMessage(true)
                                     return (
                                         authenticateUser(email, password)
                                             .then(result => {
@@ -77,6 +78,7 @@ const SignUp = () => {
                                             .catch(error => console.log(error))
                                     )
                                 }
+                                setErrorMessage(false)
                                 Swal.fire({
                                     position: "center",
                                     icon: "success",
@@ -85,7 +87,6 @@ const SignUp = () => {
                                     timer: 1500
                                 });
                                 reset();
-
                                 setError(false)
                                 logOut()
                                     .then(() => {

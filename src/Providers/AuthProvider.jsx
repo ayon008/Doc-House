@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, GoogleAuthProvider, signInWithPopup, deleteUser, reauthenticateWithCredential, EmailAuthProvider } from "firebase/auth";
 import app from '../Components/Firebase/firebase.init';
+import axios from 'axios';
 
 export const AuthContext = createContext();
 
@@ -53,9 +54,17 @@ const AuthProvider = ({ children }) => {
                 setUser(user)
                 setLoading(false)
                 console.log(user);
+                axios.post('http://localhost:5000/users')
+                    .then(response => {
+                        const token = response?.data?.token;
+                        console.log(token);
+                        sessionStorage.setItem('token', token);
+                    })
+                    .catch(err => console.log(err))
             }
             else {
                 setUser(null)
+                sessionStorage.removeItem('token')
             }
         })
         return () => unSubscribed()

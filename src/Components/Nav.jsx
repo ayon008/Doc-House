@@ -1,7 +1,7 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/Group 1.svg';
 import useAuth from './Hooks/useAuth';
+import { FaTwitter, FaUser } from 'react-icons/fa';
 
 const Nav = () => {
 
@@ -20,7 +20,7 @@ const Nav = () => {
         {
             user ?
                 <>
-                    <li className='lg:text-white'><Link>{user?.displayName}</Link></li>
+                    <li className='lg:text-white'><Link><div className='flex items-center gap-2'><FaUser /><span>{user?.displayName}</span></div></Link></li>
                     <li><Link className='btn btn-outline lg:text-white' onClick={signOut}>Log Out</Link></li>
                 </> :
                 <>
@@ -28,8 +28,6 @@ const Nav = () => {
                 </>
         }
     </>
-
-
 
     return (
         <div className="navbar h-[80px] p-0">
